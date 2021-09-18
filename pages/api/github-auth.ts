@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import * as qs from "querystring";
-import { saveUser, User } from "../../utils/firebase-admin";
+import { saveUser, User } from "../../utils/db";
 
 type Data = {
   code: string;

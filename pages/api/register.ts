@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
-import { addEmail } from "../../utils/firebase-admin";
+import { addEmail } from "../../utils/db";
 
 type Data = {
   email: string;
