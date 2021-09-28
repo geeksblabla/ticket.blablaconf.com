@@ -14,17 +14,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Setup
 
-1. Create a firebase app and with a firestore database
+1. Create a firebase app and with a firestore database.
 
-2. Go to firebase project setting > Service accout and genrate a new pirvate key,Download the json file and add the copy the following envirement variables 👇
+2. Go to firebase project setting > Service account and generate a new private key,Download the json file and add the copy the following environment variables 👇
 
 ```
+#.env.development.local
+NEXT_PUBLIC_HOST=
 PROJECT_ID=
 FIREBASE_CLIENT_EMAIL=
 FIREBASE_PRIVATE_KEY=
 ```
 
-3. Create a Github auth application and add `https://yourwebsite.com/api/github-auth` as redirect url and add you github client is and the the sectet key to your enveriement variables:
+3. Create a Github auth application and add `https://yourwebsite.com/api/github-auth` as redirect url. Add you github client id and the the secret key to your environment variables:
 
 ```
 NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID=
@@ -32,4 +34,4 @@ GITHUB_OAUTH_CLIENT_SECRET=
 
 ```
 
-4. Configure cloudinary to generate images
+4. Configure Cloudinary to generate images see `utils/ticket-image-generator.ts`

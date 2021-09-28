@@ -1,0 +1,67 @@
+/* share  */
+.share {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+  margin: 2rem;
+}
+.copy {
+  background: #acff9e;
+  padding: 18px 48px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+.github {
+  margin-right: 1rem;
+}
+.description {
+  margin: auto 1rem;
+  color: #fefefe;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+}
+.icons > div {
+  display: flex;
+}
+
+.icon {
+  margin: auto 0.7rem;
+
+  transform: scale(1.3);
+}
+.icon:hover {
+  transform: scale(1.35);
+}
+.icon > svg {
+  fill: black !important;
+}
+
+@media (max-width: 750px) {
+  .button {
+    width: 100%;
+  }
+  .share {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .description {
+    margin: 1rem 1rem;
+    text-align: center;
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .icons > div {
+    justify-content: center;
+  }
+}

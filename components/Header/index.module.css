@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.link {
+  margin-left: 2rem;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+.countdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.countdown > svg {
+  margin-right: 5px;
+}
+@media (max-width: 600px) {
+  .links {
+    display: none;
+  }
+  .header {
+    justify-content: space-around;
+  }
+}

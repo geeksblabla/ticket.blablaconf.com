@@ -91,7 +91,9 @@ export default async function handler(
       name: user.name,
     });
     // res.status(200).json(user);
-    return res.redirect(`/user/${user.login}`);
+    // fetch images and dont wait for response
+
+    return res.redirect(`/user/${user.login}?share=true`);
   } catch (error) {
     console.log(error);
 

@@ -1,33 +1,54 @@
 import { getTicketsInfo, User } from "../../utils/db";
 import { NextSeo, NextSeoProps } from "next-seo";
+import styles from "../../styles/Home.module.css";
+
 import {
   getTicketGraphImg,
   getTicketImg,
 } from "../../utils/ticket-image-generator";
+import { Layout } from "../../components/Layout";
+import { ShareActions } from "../../components/ShareActions";
+import GetTicket from "../../components/Buttons/GetTicket";
 
 //TODO: add typing
 const TicketPage = ({
   user,
+  share,
   seoConfig,
 }: {
   seoConfig: NextSeoProps;
-  user?: { name: string; image: string };
+  share: boolean;
+  user?: { name: string; image: string; url: string };
 }) => {
   return (
-    <div>
-      <NextSeo {...seoConfig} /> {JSON.stringify(user)}
-      <div>
-        <h1> {`${user?.name} 's BlaBlaConf Ticket`} </h1>
-        <img src={user?.image} />
-      </div>
-    </div>
+    <Layout>
+      <NextSeo {...seoConfig} />
+      <main className={styles.main}>
+        <div>
+          <h1 className={styles.title}>
+            {share
+              ? " Share your ticket with friends 🎉🎉"
+              : `${user?.name}'s  Ticket`}
+          </h1>
+          {share && user?.url && <ShareActions shareUrl={user?.url} />}
+          {!share && (
+            <div className={styles.get_ticket}>
+              <GetTicket />
+            </div>
+          )}
+        </div>
+        <div className={styles.ticket_container}>
+          <img className={styles.ticket} src={user?.image} height={450} />
+        </div>
+      </main>
+    </Layout>
   );
 };
 
 export async function getServerSideProps({
   query,
 }: {
-  query: { username: string };
+  query: { username: string; share: boolean };
 }) {
   const username = query.username;
   let seoConfig = null;
@@ -44,6 +65,7 @@ export async function getServerSideProps({
       user = {
         name: u.name === null ? u.login : u.name,
         image: getTicketImg(u),
+        url: process.env.NEXT_PUBLIC_HOST + "/user/" + u.login,
       };
     }
   }
@@ -51,6 +73,7 @@ export async function getServerSideProps({
   return {
     props: {
       user,
+      share: query.share || false,
       seoConfig,
     },
   };
@@ -78,7 +101,7 @@ const generateTicketsSeoConfig = (user: User): NextSeoProps => {
       ],
       site_name: "blablaconf.com",
       imageWidth: 1200,
-      imageHeight: 1200,
+      imageHeight: 630,
     },
   };
 

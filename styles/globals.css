@@ -1,9 +1,26 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Monument";
+  src: url("/fonts/MonumentExtended-Black.ttf");
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: black;
+  color: white;
+  font-family: Montserrat;
 }
 
 a {
