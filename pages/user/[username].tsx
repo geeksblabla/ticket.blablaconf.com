@@ -10,7 +10,6 @@ import {
 import { Layout } from "../../components/Layout";
 import { ShareActions } from "../../components/ShareActions";
 import GetTicket from "../../components/Buttons/GetTicket";
-import { GetStaticPaths, GetStaticProps } from "next";
 
 //TODO: add typing
 const TicketPage = ({
@@ -52,12 +51,12 @@ const TicketPage = ({
   );
 };
 
-export const getStaticProps = async ({
-  params,
+export async function getServerSideProps({
+  query,
 }: {
-  params: { username: string; share: boolean };
-}) => {
-  const username = params.username;
+  query: { username: string; share: boolean };
+}) {
+  const username = query.username;
   let seoConfig = null;
   let user = null;
 
@@ -80,19 +79,11 @@ export const getStaticProps = async ({
   return {
     props: {
       user,
-      share: params.share || false,
+      share: query.share || false,
       seoConfig,
     },
-    revalidate: 36000,
   };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return Promise.resolve({
-    paths: [],
-    fallback: "blocking",
-  });
-};
+}
 
 export default TicketPage;
 

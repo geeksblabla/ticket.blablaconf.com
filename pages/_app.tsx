@@ -6,7 +6,8 @@ import Head from "next/head";
 import Router from "next/router";
 import * as gtag from "../components/gtag";
 
-Router.events.on("routeChangeComplete", (url) => gtag.pageview(url));
+if (process.env.NODE_ENV === "production")
+  Router.events.on("routeChangeComplete", (url) => gtag.pageview(url));
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
