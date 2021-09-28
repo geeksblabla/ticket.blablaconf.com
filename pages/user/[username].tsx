@@ -3,10 +3,7 @@ import { getTicketsInfo, User } from "../../utils/db";
 import { NextSeo, NextSeoProps } from "next-seo";
 import styles from "../../styles/Home.module.css";
 
-import {
-  getTicketGraphImg,
-  getTicketImg,
-} from "../../utils/ticket-image-generator";
+import { getTicketImg } from "../../utils/ticket-image-generator";
 import { Layout } from "../../components/Layout";
 import { ShareActions } from "../../components/ShareActions";
 import GetTicket from "../../components/Buttons/GetTicket";
@@ -102,7 +99,7 @@ const generateTicketsSeoConfig = (user: User): NextSeoProps => {
         "BlaBla Conf | 5 Days and 5 Tracks Covering Hottest Technology Trends in Darija",
       images: [
         {
-          url: getTicketGraphImg(user),
+          url: getTicketImg(user),
         },
       ],
       site_name: "blablaconf.com",
