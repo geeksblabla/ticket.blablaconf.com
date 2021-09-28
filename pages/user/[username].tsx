@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { getTicketsInfo, User } from "../../utils/db";
 import { NextSeo, NextSeoProps } from "next-seo";
 import styles from "../../styles/Home.module.css";
@@ -9,6 +10,7 @@ import {
 import { Layout } from "../../components/Layout";
 import { ShareActions } from "../../components/ShareActions";
 import GetTicket from "../../components/Buttons/GetTicket";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 //TODO: add typing
 const TicketPage = ({
@@ -38,19 +40,24 @@ const TicketPage = ({
           )}
         </div>
         <div className={styles.ticket_container}>
-          <img className={styles.ticket} src={user?.image} height={450} />
+          <img
+            className={styles.ticket}
+            src={user?.image}
+            height={450}
+            alt={`${user?.name}'s  Ticket`}
+          />
         </div>
       </main>
     </Layout>
   );
 };
 
-export async function getServerSideProps({
-  query,
+export const getStaticProps = async ({
+  params,
 }: {
-  query: { username: string; share: boolean };
-}) {
-  const username = query.username;
+  params: { username: string; share: boolean };
+}) => {
+  const username = params.username;
   let seoConfig = null;
   let user = null;
 
@@ -73,11 +80,19 @@ export async function getServerSideProps({
   return {
     props: {
       user,
-      share: query.share || false,
+      share: params.share || false,
       seoConfig,
     },
+    revalidate: 36000,
   };
-}
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return Promise.resolve({
+    paths: [],
+    fallback: "blocking",
+  });
+};
 
 export default TicketPage;
 
