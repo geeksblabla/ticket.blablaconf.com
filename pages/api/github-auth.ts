@@ -93,7 +93,7 @@ export default async function handler(
     // res.status(200).json(user);
     // fetch images and dont wait for response
 
-    return res.redirect(`/user/${user.login}?share=true`);
+    return res.redirect(`/my-ticket/${user.login}`);
   } catch (error) {
     console.log(error);
 

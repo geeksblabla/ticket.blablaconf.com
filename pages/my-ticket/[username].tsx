@@ -5,8 +5,9 @@ import styles from "../../styles/Home.module.css";
 
 import { getTicketImg } from "../../utils/ticket-image-generator";
 import { Layout } from "../../components/Layout";
-import GetTicket from "../../components/Buttons/GetTicket";
+import { ShareActions } from "../../components/ShareActions";
 import { GetStaticPaths } from "next";
+import { useEffect } from "react";
 
 //TODO: add typing
 const TicketPage = ({
@@ -14,18 +15,20 @@ const TicketPage = ({
   seoConfig,
 }: {
   seoConfig: NextSeoProps;
-  share: boolean;
   user?: { name: string; image: string; url: string };
 }) => {
+  useEffect(() => {
+    // prefetch  ticket url for social graph
+    if (user?.url) fetch(user?.url);
+  }, []);
+
   return (
     <Layout>
       <NextSeo {...seoConfig} />
       <main className={styles.main}>
         <div>
-          <h1 className={styles.title}>{`${user?.name}'s  Ticket`}</h1>
-          <div className={styles.get_ticket}>
-            <GetTicket />
-          </div>
+          <h1 className={styles.title}>Share your ticket with friends 🎉🎉</h1>
+          {user?.url && <ShareActions shareUrl={user?.url} />}
         </div>
         <div className={styles.ticket_container}>
           <img
@@ -48,8 +51,6 @@ export const getStaticProps = async ({
   const username = params.username;
   let seoConfig = null;
   let user = null;
-
-  console.log(username);
 
   if (username && username !== "") {
     const userDoc = await getTicketsInfo(username);

@@ -55,7 +55,6 @@ export const saveUser = async (user: User) => {
 
   if (exists) return Promise.resolve(true);
   const ticketNumber = await getTicketNumber();
-  console.log(ticketNumber);
 
   const saveUserRequest = Tickets.doc(user.login).set(
     {
