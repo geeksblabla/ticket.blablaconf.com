@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./index.module.css";
 
 const githubUrl = `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(
@@ -5,9 +6,14 @@ const githubUrl = `https://github.com/login/oauth/authorize?client_id=${encodeUR
 )}`;
 
 const GithubButton = () => {
+  const [loading, setLoading] = useState(false);
   return (
-    <a href={githubUrl} className={styles.github_button}>
-      Customize with Github
+    <a
+      href={githubUrl}
+      onClick={() => setLoading(true)}
+      className={styles.github_button}
+    >
+      {loading ? "Loading Github Profile ...." : "Customize with Github"}
     </a>
   );
 };

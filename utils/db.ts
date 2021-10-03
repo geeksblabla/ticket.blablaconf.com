@@ -51,7 +51,6 @@ export const isUserExist = async (username: string) => {
 
 export const saveUser = async (user: User) => {
   const exists = await isUserExist(user.login);
-  console.log({ exists });
 
   if (exists) return Promise.resolve(true);
   const ticketNumber = await getTicketNumber();
