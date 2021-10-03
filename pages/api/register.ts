@@ -42,8 +42,7 @@ export default async function handler(
 
   try {
     await addEmail(email);
-    return res.redirect(`/`);
-    // return res.status(200).json({ message: "You are in!" });
+    return res.redirect(303, `/`);
   } catch (error) {
     return res.status(400).json({
       error: {
