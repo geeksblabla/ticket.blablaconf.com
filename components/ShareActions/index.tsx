@@ -28,7 +28,7 @@ export const ShareActions = ({ shareUrl }: { shareUrl: string }) => {
     if (copied) setTimeout(() => setCopied(false), 2000);
   }, [copied]);
   const title =
-    "Hey, I am attending #BlaBlaConf Grab your ticket too  #GeeksBlaBla #DevC_Morocco";
+    "Hey, I am attending #BlaBlaConf 2021 by @geeksblabla. Grab your ticket too! It's free";
 
   return (
     <div className={styles.share}>
