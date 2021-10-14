@@ -28,6 +28,7 @@ const TicketPage = ({
           </div>
         </div>
         <div className={styles.ticket_container}>
+          <div className={styles.ticket_placeholder}></div>
           <img
             className={styles.ticket}
             src={user?.image}
@@ -48,8 +49,6 @@ export const getStaticProps = async ({
   const username = params.username;
   let seoConfig = null;
   let user = null;
-
-  console.log(username);
 
   if (username && username !== "") {
     const userDoc = await getTicketsInfo(username);
@@ -86,14 +85,14 @@ export default TicketPage;
 const generateTicketsSeoConfig = (user: User): NextSeoProps => {
   const name = user.name === null ? user.login : user.name;
   const seoConfig = {
-    title: name + "'s BlaBlaConf Ticket",
+    title: name + "'s BlaBlaConf 2021 Ticket",
     description:
       "BlaBla Conf | 5 Days and 5 Tracks Covering Hottest Technology Trends in Darija",
     openGraph: {
       type: "website",
       locale: "en_IE",
       url: process.env.NEXT_PUBLIC_HOST + "/user/" + user.login,
-      title: name + "'s BlaBlaConf Ticket",
+      title: name + "'s BlaBlaConf 2021 Ticket",
       description:
         "BlaBla Conf | 5 Days and 5 Tracks Covering Hottest Technology Trends in Darija",
       images: [

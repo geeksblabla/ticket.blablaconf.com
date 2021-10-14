@@ -31,6 +31,7 @@ const TicketPage = ({
           {user?.url && <ShareActions shareUrl={user?.url} />}
         </div>
         <div className={styles.ticket_container}>
+          <div className={styles.ticket_placeholder}></div>
           <img
             className={styles.ticket}
             src={user?.image}

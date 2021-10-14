@@ -10,7 +10,10 @@ export const Layout = ({ children }: Props) => {
     <div className={styles.container}>
       <Header />
       {children}
-      <footer className={styles.footer}>Powered by @geeksblabla</footer>
+      <footer className={styles.footer}>
+        Made with ❤️ By DevC Team. Copyright © 2021 Blabla Conf. All rights
+        reserved.
+      </footer>
     </div>
   );
 };

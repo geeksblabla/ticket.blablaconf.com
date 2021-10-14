@@ -6,6 +6,7 @@ import { saveUser, User } from "../../utils/db";
 type Data = {
   code: string;
   description: string;
+  error?: any;
 };
 // this is a redirect url from github auth
 export default async function handler(
@@ -100,6 +101,7 @@ export default async function handler(
     return res.status(400).json({
       code: "error_database",
       description: "Error saving to database ",
+      error,
     });
   }
 }

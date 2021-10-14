@@ -17,15 +17,16 @@ const getFirebase = () => {
   return admin;
 };
 
-const Tickets = getFirebase().firestore().collection("/tickets");
-const Registration = getFirebase().firestore().collection("/registrations");
+const Tickets = () => getFirebase().firestore().collection("tickets");
+const Registration = () =>
+  getFirebase().firestore().collection("registrations");
 
 export const getTicketsInfo = (userName: string) => {
-  return Tickets.doc(userName).get();
+  return Tickets().doc(userName).get();
 };
 
 export const addEmail = (email: string) => {
-  return Registration.doc(email).set(
+  return Registration().doc(email).set(
     {
       email,
       createdAt: getFirebase().firestore.FieldValue.serverTimestamp(),
@@ -44,7 +45,7 @@ export type User = {
 };
 
 export const isUserExist = async (username: string) => {
-  const userDoc = await Tickets.doc(username).get();
+  const userDoc = await Tickets().doc(username).get();
 
   return userDoc.exists;
 };
@@ -55,27 +56,31 @@ export const saveUser = async (user: User) => {
   if (exists) return Promise.resolve(true);
   const ticketNumber = await getTicketNumber();
 
-  const saveUserRequest = Tickets.doc(user.login).set(
-    {
-      ...user,
-      createdAt: getFirebase().firestore.FieldValue.serverTimestamp(),
-      ticketNumber,
-    },
-    { merge: true }
-  );
+  const saveUserRequest = Tickets()
+    .doc(user.login)
+    .set(
+      {
+        ...user,
+        createdAt: getFirebase().firestore.FieldValue.serverTimestamp(),
+        ticketNumber,
+      },
+      { merge: true }
+    );
 
-  const incrementTicketNumber = Tickets.doc(STATS_DOC).set(
-    {
-      total: getFirebase().firestore.FieldValue.increment(1),
-    },
-    { merge: true }
-  );
+  const incrementTicketNumber = Tickets()
+    .doc(STATS_DOC)
+    .set(
+      {
+        total: getFirebase().firestore.FieldValue.increment(1),
+      },
+      { merge: true }
+    );
 
   return Promise.all([saveUserRequest, incrementTicketNumber]);
 };
 
 const getTicketNumber = async () => {
-  const StatsDoc = Tickets.doc(STATS_DOC);
+  const StatsDoc = Tickets().doc(STATS_DOC);
 
   try {
     const stats = await StatsDoc.get();

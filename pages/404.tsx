@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import GithubButton from "../components/Buttons/Github";
+import GetTicket from "../components/Buttons/GetTicket";
 import { Layout } from "../components/Layout";
 import styles from "../styles/Home.module.css";
 
@@ -9,12 +9,9 @@ const Home: NextPage = () => {
       <Layout>
         <main className={styles.main}>
           <div>
-            <h1 className={styles.title}> Now make your own ticket 😎</h1>
-            <p className={styles.description}>
-              Generate a unique ticket image with your GitHub profile.
-            </p>
+            <h1 className={styles.title}> Page Not Found ⚠️</h1>
           </div>
-          <GithubButton />
+          <GetTicket />
           <div className={styles.ticket_container}>
             <div className={styles.ticket_placeholder}></div>
             <img className={styles.ticket} src="/img/ticket.png" alt="Ticket" />
