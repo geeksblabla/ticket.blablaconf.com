@@ -6,11 +6,9 @@ import { Countdown } from "./Countdown";
 export const Header = () => (
   <div className={styles.header}>
     <div>
-      <Link href="/">
-        <a role="link" aria-label="blablaconf link">
-          <Logo />
-        </a>
-      </Link>
+      <a href="https://blablaconf.com" role="link" aria-label="blablaconf link">
+        <Logo />
+      </a>
     </div>
 
     <div className={styles.links}>
