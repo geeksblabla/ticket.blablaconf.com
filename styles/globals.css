@@ -21,6 +21,7 @@ body {
   background-color: black;
   color: white;
   font-family: Montserrat;
+  overflow-x: hidden;
 }
 
 a {
